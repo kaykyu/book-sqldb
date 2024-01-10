@@ -93,4 +93,25 @@ public class BookRepository {
         rs.next();
         return rs.getInt("total");
     }
+
+    public List<Book> getBooksByPage(Integer page) {
+
+        SqlRowSet rs = template.queryForRowSet(Queries.SQL_SELECT_BOOK_BY_PAGE, page);
+        List<Book> books = new ArrayList<>();
+
+        while (rs.next()) {
+            books.add(new Book(
+                    rs.getString("book_id"),
+                    rs.getString("title"),
+                    rs.getString("authors"),
+                    rs.getString("description"),
+                    rs.getString("format"),
+                    rs.getInt("pages"),
+                    rs.getFloat("rating"),
+                    rs.getString("genres"),
+                    rs.getString("image_url")));
+        }
+
+        return books;
+    }
 }

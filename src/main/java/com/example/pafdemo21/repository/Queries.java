@@ -19,6 +19,7 @@ public class Queries {
     public static final String SQL_SELECT_ALL_BOOKS = """
             select *
             from book2018
+            order by title asc
             """;
 
     public static final String SQL_SELECT_BOOK_BY_ID = """
@@ -31,5 +32,13 @@ public class Queries {
             select count(*)
             as total
             from book2018
+            """;
+            
+    public static final String SQL_SELECT_BOOK_BY_PAGE = """
+            select *
+            from book2018
+            order by title asc
+            limit 20
+            offset ?
             """;
 }
